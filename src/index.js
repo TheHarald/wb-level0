@@ -136,7 +136,6 @@ INNInputElement.addEventListener('focusout', () => {
     const INNRegExp = /^\d{10}$/;
     if(INNInputElement.value === '') {
         INNInputElement.classList.remove('input-error');
-        INNInputSubtitleElement.classList.add('hide');
     }else if(!INNRegExp.test(INNInputElement.value)) {
         INNInputElement.classList.add('input-error');
         INNInputSubtitleElement.classList.remove('hide');
