@@ -118,12 +118,14 @@
     }
 
     .text-body.item-title{
-        max-height : 40px;
-        overflow: hidden;
         font-weight: 400;
         font-size: 14px;
         line-height: 20px;
         text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
     .text-caption.item-size{
         display: none;
