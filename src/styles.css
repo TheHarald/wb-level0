@@ -5,6 +5,16 @@
     font-family: "Segoe UI", Arial, sans-serif;
 }
 
+html{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body{
+    width: 1400px;
+}
+
 :root{
     --system-violet: #6725A8;
     --system-white: #FFFFFF;
@@ -71,7 +81,7 @@
     display: flex;
     flex-direction: row;
     gap: 32px;
-    padding: 16px 24px;
+    padding: 18px 24px;
 }
 
 .header__logo-container{
@@ -126,6 +136,7 @@
     padding-right:20px;
     opacity: 0.5;
     flex: 1;
+    margin-right: 2px;
 }
 
 .search__icon{
@@ -608,13 +619,13 @@
 
 .total{
     min-width: 300px;
-    max-width: 360px;
+    max-width: 429px;
     display: flex;
     flex-direction: column;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15), 0px 0px 1px rgba(0, 0, 0, 0.3);
     border-radius: 16px;
     background-color: var(--system-white);
-    padding: 16px 24px;
+    padding: 16px 24px 24px 24px;
     gap: 24px;
     margin-bottom: auto;
 
@@ -667,6 +678,18 @@
     justify-content: space-between;
     flex-direction: row;
     gap: 16px;
+}
+
+.py-t-6{
+    padding-top: 6px;
+}
+
+.gap-x-8{
+    gap: 8px;
+}
+
+.lh-15{
+    line-height: 15px;
 }
 
 .total-section__header{
@@ -846,11 +869,14 @@
     border-bottom: 1px solid var(--system-gray);
 }
 
+
+
 .cart-main-info__container{
     display: flex;
     flex-direction: column;
     gap: 40px;
     flex: 1;
+    padding-top: 10px;
 }
 
 .gray{
