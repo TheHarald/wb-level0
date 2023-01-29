@@ -6,13 +6,13 @@
 }
 
 html{
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
 }
 
 body{
-    width: 1400px;
+    /* width: 1400px; */
 }
 
 :root{
@@ -80,8 +80,32 @@ body{
 .header{
     display: flex;
     flex-direction: row;
-    gap: 32px;
+    justify-content: center;
+}
+
+.divider.cart__item-divider{
+    display: none;
+}
+
+.divider.miss{
+    display: none;
+    margin-top: 16px;
+}
+
+.counter.miss{
+    display: none;
+}
+
+.count__value.miss{
+    display: none;
+}
+
+.header__conatiner{
+    display: flex;
+    flex-direction: row;
     padding: 18px 24px;
+    gap: 32px;
+    width: 1400px;
 }
 
 .header__logo-container{
@@ -196,9 +220,9 @@ body{
     background: var(--system-red);
     border-radius: 8px;
     position: absolute;
-    top: -4px;
+    top: -8px;
     /* left: 16px; */
-    right: -8px;
+    right: -6px;
 
     font-style: normal;
     font-weight: 700;
@@ -208,13 +232,28 @@ body{
 }
 
 .main{
-    /* height: 1000px; */
     background-color: var(--bacground-smoky);
     border-radius: 24px;
-    padding: 24px;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.optional-info__container{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    justify-content: center;
+}
+
+.main__container{
+    width: 1400px;
     display: flex;
     flex-direction: row;
     gap: 32px;
+    padding: 24px;
+    padding-bottom: 50px;
+
 }
 
 .footer{
@@ -313,7 +352,7 @@ body{
     height: 1px;
     border: none;
     margin-top: 16px;
-    margin-bottom: 10px;
+    /* margin-bottom: 12px; */
 }
 
 .cart__items
@@ -327,6 +366,7 @@ body{
     display: flex;
     flex-direction: row;
     gap: 16px;
+    margin-top: 12px;
 }
 
 .cart__item-image{
@@ -393,7 +433,7 @@ body{
 .price__actual{
     display: flex;
     flex-direction: row;
-    gap: 2px;
+    gap: 4px;
     align-items: flex-end;
 }
 
@@ -417,7 +457,7 @@ body{
     display: flex;
     flex-direction: row;
     gap: 6px;
-    align-items: flex-end;
+    align-items: center;
     position: relative;
 }
 
@@ -430,7 +470,7 @@ body{
 .count__info{
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
     visibility: hidden;
     transition: all 0.5s;
     opacity: 0;
@@ -504,8 +544,13 @@ body{
 .price__value{
     font-style: normal;
     font-weight: 700;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 20px;
+    line-height: 28px;
+
+    display: flex;
+    align-items: center;
+    text-align: right;
+    letter-spacing: -0.01em;
     color: var(--text-black);
 }
 
@@ -618,7 +663,7 @@ body{
 }
 
 .total{
-    min-width: 300px;
+    min-width: 303px;
     max-width: 429px;
     display: flex;
     flex-direction: column;
@@ -680,6 +725,23 @@ body{
     gap: 16px;
 }
 
+.checkbox-image__container{
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+    align-self: flex-start;
+}
+
+.fs-16{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    text-align: right;
+}
+
 .py-t-6{
     padding-top: 6px;
 }
@@ -690,6 +752,23 @@ body{
 
 .lh-15{
     line-height: 15px;
+}
+
+.mt-12{
+    margin-top: 12px;
+}
+.w-309{
+    width: 309px;
+}
+
+.no-wrap {
+    white-space: nowrap;
+}
+
+.flex-col-16{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .total-section__header{
@@ -830,6 +909,7 @@ body{
     font-size: 13px;
     line-height: 16px;
     color: var(--text-black);
+    padding-right: 18px;
 }
 
 .total-section-submit__text::before{
@@ -887,7 +967,7 @@ body{
     display: flex;
     flex-direction: column;
     gap: 16px;
-    padding: 16px 24px;
+    padding: 16px 24px 24px 24px;
     border-radius: 16px;
     background: var(--system-white);
 }
@@ -916,6 +996,8 @@ body{
     border: none;
     color: var(--system-magenta);
     cursor: pointer;
+    display: flex;
+    align-self: flex-end;
 }
 
 .place-info__text{
@@ -952,12 +1034,13 @@ body{
     font-weight: 600;
     font-size: 16px;
     line-height: 24px;
+    white-space: nowrap;
 
 }
 
 .mode-option__container{
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: min-content 1fr;
     gap: 16px 32px;; 
 }
 
@@ -1017,7 +1100,7 @@ body{
     border-bottom: 1px solid var(--system-gray);
     appearance: none;
     outline: none;
-    padding-top: 16px;
+    padding-top: 22px;
     transition: all 0.3s ease;
     -webkit-appearance: none;
     border-radius: 0;
@@ -1033,11 +1116,18 @@ body{
     border-bottom: 1px solid var(--text-black);
 }
 
+.vis{
+    visibility: visible !important;
+    top: 2px !important;
+    position: absolute !important;
+}
+
+
 .recipient__input-label{
     position: absolute;
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 13px;
     line-height: 16px;
     color: var(--system-gray);
     top: 16px;
@@ -1048,7 +1138,7 @@ body{
 .recipient__input:focus ~ .recipient__input-label{
     visibility: visible;
     left: 0;
-    top:0;
+    top:2px;
     position: absolute;
     font-size: 13px;
 
@@ -1088,6 +1178,7 @@ body{
     display: flex;
     flex-direction: column;
     gap: 16px;
+    max-width: 700px;
 }
 
 .recipient__form-row-container{
@@ -1158,6 +1249,10 @@ body{
     height: 16px;
     border: 1px solid var(--system-gray);
     position: relative;
+    margin-top: 10px;
+}
+.modal-window__button.delivery{
+    margin-top: 40px;
 }
 
 .modal-window__radio:checked{
@@ -1181,7 +1276,7 @@ body{
 }
 
 .modal-window__button{
-    margin-top: 40px;
+    margin-top: 120px;
     display: inline-flex;
     width: min-content;
     justify-content: center;
@@ -1277,7 +1372,7 @@ body{
     display: flex;
     flex-direction: row;
     gap: 8px;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .radio-button__address-label{
@@ -1292,7 +1387,7 @@ body{
 .addresses__list{
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
 }
 
 .hide{
@@ -1307,6 +1402,7 @@ body{
     height: 28px;
     border: none;
 }
+
 
 .text-caption.item-size.mobile{
     display: none;

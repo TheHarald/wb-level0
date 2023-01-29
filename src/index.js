@@ -1,9 +1,9 @@
 const itemPrices = [ 522, 1007, 493 ];
-const oldItemPrices = [ 674, 1107, 513 ];
+const oldItemPrices = [ 1051, 1107, 513 ];
 
 //redux
-const counterElements = document.querySelectorAll('.counter'); //счётчики
-const counterNumberElements = document.querySelectorAll('.count__value > .count__number'); // осталось
+const counterElements = document.querySelectorAll('.counter.active') //счётчики
+const counterNumberElements = document.querySelectorAll('.count__value.active > .count__number'); // осталось
 const priceValueElements = document.querySelectorAll('.price__value'); // цены
 const oldPriceValueElements = document.querySelectorAll('.old-price-value'); // старые цены
 const itemCheckboxElements = document.querySelectorAll('.checkbox-conatiner > .checkbox.item'); // чекбоксы
@@ -52,6 +52,32 @@ const cartTotalPriceElement = document.querySelector('.cart-total-price'); // с
 const selectAllCheckboxElement = document.querySelector('.checkbox-conatiner.active'); // чекбокс выбрать все
 const cartInfoElement = document.querySelector('.cart__items-count.active'); // информация о корзине
 const formElement = document.querySelector('#form'); // форма
+
+const countValueElements = document.querySelectorAll('.count__value'); // количество товаров соталось
+
+
+const nameInputLabelElement = document.querySelector('.recipient__input-label.name'); // лейбл имени
+const secondNameInputLabelElement = document.querySelector('.recipient__input-label.second-name'); // лейбл фамилии
+const phoneInputLabelElement = document.querySelector('.recipient__input-label.phone'); // лейбл телефона
+const emailInputLabelElement = document.querySelector('.recipient__input-label.email'); // лейбл email
+const INNInputLabelElement = document.querySelector('.recipient__input-label.inn'); // лейбл ИНН
+
+
+const deliverTshirtItemElement = document.querySelector('.mode-option__item.t-shirt56'); // футболки в доставке
+const deliverTshirtItemCountElement = document.querySelector('.mode-option__item.t-shirt56 > .option__icon-label'); // количество телефонов в доставке
+
+const deliverPhone56ItemElement = document.querySelector('.mode-option__item.phone56'); // телефоны в доставке
+const deliverPhone56ItemCountElement = document.querySelector('.mode-option__item.phone56 > .option__icon-label'); // количество телефонов в доставке
+
+const deliverPencilsItemElement = document.querySelector('.mode-option__item.pencils56'); // карандаши в доставке
+const deliverPencilsItemCountElement = document.querySelector('.mode-option__item.pencils56 > .option__icon-label'); // количество карандашей в доставке
+
+const deliverPhone78ItemElement = document.querySelector('.mode-option__item.phone78'); // телефоны  в доставке 7-8
+const deliverPhone78ItemCountElement = document.querySelector('.mode-option__item.phone78 > .option__icon-label'); // количество телефонов в доставке 7-8
+
+const deliverDate56TitleElement = document.querySelector('.mode-option__title.delivery56'); // дата доставки 5-6
+const deliverDate78TitleElement = document.querySelector('.mode-option__title.delivery78'); // дата доставки 7-8
+
 
 cartshowHideButton.addEventListener('click', () => { 
     cartElement.classList.toggle('hide');
@@ -103,13 +129,18 @@ paymentButtonElement.addEventListener('click', () => {
 emailInputElement.addEventListener('focusout', () => {
     const emailRegExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if(emailInputElement.value === '') {
-        console.log('empty');
         emailInputSubtitleElement.classList.add('hide');
         emailInputElement.classList.remove('input-error');
     }else if(!emailRegExp.test(emailInputElement.value)) {
         emailInputSubtitleElement.classList.remove('hide');
         emailInputElement.classList.add('input-error');
         emailInputSubtitleElement.textContent = 'Проверьте адрес электронной почты';
+    }
+
+    if(emailInputElement.value !== '') {
+        emailInputLabelElement.classList.add('vis');
+    }else{
+        emailInputLabelElement.classList.remove('vis');
     }
 });
 
@@ -129,7 +160,13 @@ phoneInputElement.addEventListener('focusout', () => {
         phoneInputSubtitleElement.classList.remove('hide');
         phoneInputElement.classList.add('input-error');
         phoneInputSubtitleElement.textContent = 'Формат: +9 999 999 99 99';
-    }     
+    }   
+
+    if(phoneInputElement.value !== '') {
+        phoneInputLabelElement.classList.add('vis');    
+    }else {
+        phoneInputLabelElement.classList.remove('vis');
+    }
 });
 
 INNInputElement.addEventListener('focusout', () => {
@@ -142,6 +179,12 @@ INNInputElement.addEventListener('focusout', () => {
         INNInputSubtitleElement.classList.remove('black');
         INNInputSubtitleElement.textContent = 'Формат: 1234567890';
     }
+    
+    if(INNInputElement.value !== '') {
+        INNInputLabelElement.classList.add('vis');
+    }else {
+        INNInputLabelElement.classList.remove('vis');
+    }
 });
 
 nameInputElement.addEventListener('focus', () => {
@@ -149,9 +192,25 @@ nameInputElement.addEventListener('focus', () => {
     nameInputElement.classList.remove('input-error');
 });
 
+nameInputElement.addEventListener('focusout', () => {
+    if(nameInputElement.value !== '') {
+        nameInputLabelElement.classList.add('vis');
+    }else {
+        nameInputLabelElement.classList.remove('vis');
+    }
+});
+
 secondNameInputElement.addEventListener('focus', () => {
     secondNameInputSubtitleElement.classList.add('hide');
     secondNameInputElement.classList.remove('input-error');
+});
+
+secondNameInputElement.addEventListener('focusout', () => {
+    if(secondNameInputElement.value !== '') {
+        secondNameInputLabelElement.classList.add('vis');
+    }else {
+        secondNameInputLabelElement.classList.remove('vis');
+    }
 });
 
 emailInputElement.addEventListener('focus', () => {
@@ -171,10 +230,6 @@ INNInputElement.addEventListener('focus', () => {
 });
 
 
-
-
-
-
 const store = createStore(rootReducer,{
     diliveryType: 'point', // 'courier' or 'point'
     paymentIsChecked: false,
@@ -187,24 +242,27 @@ const store = createStore(rootReducer,{
         {
         count: 1,
         price: 522,
-        oldPrice: 674,
+        oldPrice: 1051,
         isChecked: true,
-        left: 12,
+        left: 2,
+        name:'t-shirt'
         
     },
     {
-        count: 199,
+        count: 200,
         price: 1007,
         oldPrice: 1107,
         isChecked: true,
-        left: 202,
+        left: 400,
+        name:'phone'
     },
     {
-        count: 1,
-        price: 493,
-        oldPrice: 513,
-        isChecked: false,
-        left: 5,
+        count: 2,
+        price: 247,
+        oldPrice: 475,
+        isChecked: true,
+        left: 2,
+        name:'pencils'
     },
 ]
 });
@@ -232,8 +290,6 @@ editDeliveryModalButtons.forEach(button => {
 });
 
 
-
-
 deliveryOptionCourierCheckboxElements.addEventListener('click', () => {
     store.dispatch({type:actionTypes.CHANGE_DELIVERY_TYPE, deliveryType: 'courier'});
 });
@@ -241,7 +297,6 @@ deliveryOptionCourierCheckboxElements.addEventListener('click', () => {
 deliveryOptionPointCheckboxElements.addEventListener('click', () => {
     store.dispatch({type:actionTypes.CHANGE_DELIVERY_TYPE, deliveryType: 'point'});
 });
-
 
 counterElements.forEach((counterElement, index) => {
     counterElement.children[0].addEventListener('click', () => {
@@ -326,8 +381,90 @@ store.subscribe(() => {
         deliveryOptionCourierElements.classList.remove('hide');
     }
 
+    state.items.forEach((item, index) => {
+        if(item.count + 2 >= item.left) {
+            countValueElements[index].classList.remove('hidden');
+            countValueElements[index].classList.add('visible');
+        }
+        else {
+            countValueElements[index].classList.remove('visible');
+            countValueElements[index].classList.add('hidden');
+        }
 
-    
+        if(item.name === 'phone') {
+            if(item.count < 17){
+                deliverPhone78ItemCountElement.textContent = item.count;
+                deliverPhone56ItemElement.classList.add('hide');
+
+            }else{
+                deliverPhone56ItemCountElement.textContent = item.count-16;
+                deliverPhone78ItemCountElement.textContent = 16;
+                deliverPhone56ItemElement.classList.remove('hide');
+            }
+            if(item.count === 17) {
+                deliverPhone56ItemCountElement.classList.add('hide');
+            }
+            else if(item.count === 1) {
+                deliverPhone78ItemCountElement.classList.add('hide');
+            } else{
+                deliverPhone56ItemCountElement.classList.remove('hide');
+                deliverPhone78ItemCountElement.classList.remove('hide');
+            }
+
+            if(!item.isChecked){
+                deliverPhone56ItemElement.classList.add('hide');
+                deliverPhone78ItemElement.classList.add('hide');
+                deliverDate78TitleElement.classList.add('hide');
+            }else{
+                deliverPhone56ItemElement.classList.remove('hide');
+                deliverPhone78ItemElement.classList.remove('hide');
+            }
+
+            
+        }
+
+        if(item.name === 't-shirt') {
+            if(item.count === 1){
+                deliverTshirtItemCountElement.classList.add('hide');
+            } else {
+                deliverTshirtItemCountElement.classList.remove('hide');
+            }
+            deliverTshirtItemCountElement.textContent = item.count;
+
+            if(!item.isChecked){
+                deliverTshirtItemElement.classList.add('hide');
+            }else{
+                deliverTshirtItemElement.classList.remove('hide');
+            }
+        }
+
+        if(item.name === 'pencils') {
+            if(item.count === 1){
+                deliverPencilsItemCountElement.classList.add('hide');
+            } else {
+                deliverPencilsItemCountElement.classList.remove('hide');
+            }
+            deliverPencilsItemCountElement.textContent = item.count;
+
+            if(!item.isChecked){
+                deliverPencilsItemElement.classList.add('hide');
+            }else{
+                deliverPencilsItemElement.classList.remove('hide');
+            }
+        }
+
+    });
+
+    if(state.items.filter(item => item.isChecked).length === 0) {
+        deliverDate56TitleElement.classList.add('hide');
+        deliverDate78TitleElement.classList.add('hide');
+    }else{
+        deliverDate56TitleElement.classList.remove('hide');
+        if(state.items.filter(item => item.name === 'phone' && item.isChecked).length > 0){
+            deliverDate78TitleElement.classList.remove('hide');
+        }
+    }
+
 });
 
 store.dispatch({type: 'INIT'});
