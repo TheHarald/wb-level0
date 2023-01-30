@@ -25,6 +25,7 @@ body{
     --system-gray: #9797AF;
     --sytem-green: #0CB477;
     --system-smoky-dark:  #F0ECF4;
+    --system-magenta-hover: #E313BF;
 
 }
 
@@ -437,12 +438,26 @@ body{
     align-items: flex-end;
 }
 
+input[type=search]::-ms-clear { display: none; width : 0; height: 0; }
+input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
+
 .old-price{
     display: flex;
     text-decoration: line-through;
     border-bottom: 1px dashed var(--system-gray);
     color: var(--system-gray);
     position: relative;
+}
+
+.modal-window__button:hover{
+    background-color: var(--system-magenta-hover);
+    cursor: pointer;
+    transition: all 0.5s;
 }
 
 .item__optional-info{
@@ -491,6 +506,7 @@ body{
 
 .icon-container:hover > .counter__option-button.magenta{
     transition: 0.5s;
+
     filter: invert(12%) sepia(99%) saturate(6441%) hue-rotate(304deg) brightness(95%) contrast(89%);
 }
 
@@ -932,6 +948,24 @@ body{
     line-height: 24px;
     color: var(--system-white);
 }
+
+.total-section-submit__button:hover{
+    cursor: pointer;
+    background: var(--system-magenta-hover);
+    transition: all 0.5s;
+}
+
+.checkbox:hover{
+    cursor: pointer;
+}
+
+.checkbox:checked:hover{
+    cursor: pointer;
+    background: var(--system-magenta-hover);
+    transition: all 0.5s;
+}
+
+
 
 .checked-black{
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(125deg) brightness(106%) contrast(104%); 
